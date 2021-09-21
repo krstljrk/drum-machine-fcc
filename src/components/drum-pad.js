@@ -76,6 +76,7 @@ export default class DrumPad extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    // SOURCE OF PROBLEM:
     handleClick = (id) => {
         /* this.audio.play; */
         
