@@ -66,17 +66,45 @@ const AudioObject = [
     }
 ]
 
-export default function DrumPad(props) {
-    return (
-        <div>
-            {AudioObject.map((drumPad) => (
-            <div key={drumPad.btnID}>
-                <button className="drum-pad" id={drumPad.btnID} onClick={props.handleClick(drumPad.btnID, drumPad.textID)} onKeyDown={props.handleKeyPress}> {drumPad.trigger}
-                    <audio className="clip" id={drumPad.trigger} src={drumPad.source} />
-                </button>
-            </div>
-        ))}
-        </div>
+export default class DrumPad extends React.Component {
+    constructor(props) {
+        super(props);
 
-    )
+        this.audio = React.createRef();
+
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick = (id) => {
+        /* this.audio.play; */
+        
+        /* const sound = document.getElementById(id)
+        sound.play(); */
+    }
+
+    handleKeyPress = (event) => {
+        const key = event.key.toUpperCase();
+        if ("QWEASDZXC".includes(key)) {
+            /* this.audio.play; */
+            document.getElementById(key).play();
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                {AudioObject.map((drumPad) => (
+                    <div key={drumPad.btnID}>
+                        <button className="drum-pad" id={drumPad.btnID} onClick={this.handleClick(drumPad.btnID)} onKeyDown={this.handleKeyPress}> {drumPad.trigger}
+                            <audio ref={this.audio} className="clip" id={drumPad.trigger} src={drumPad.source} />
+                        </button>
+                    </div>
+                ))}
+            </div>
+
+        )
+    }
+
+
 }
