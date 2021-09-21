@@ -1,0 +1,24 @@
+@mixin equal-padding ($x) {
+    padding: $x $x $x $x;
+}
+
+@mixin equal-margin ($x) {
+    margin: $x $x $x $x;
+}
+
+$background: #e17055;
+$container: #fab1a0;
+$border-color: #d63031;
+/* $font: 'Space Grotesk', sans-serif;
+$font-area: 'Roboto Mono', monospace;
+$page-title: 'Space Grotesk', sans-serif; */
+
+body {
+    background-color: $background;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
