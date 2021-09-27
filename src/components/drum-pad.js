@@ -70,15 +70,12 @@ export default class DrumPad extends React.Component {
     constructor(props) {
         super(props);
 
-        this.audio = React.createRef();
-
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
     // SOURCE OF PROBLEM:
-    handleClick = (id) => {
-        /* this.audio.play; */
+    handleClick = () => {
         
         /* const sound = document.getElementById(id)
         sound.play(); */
@@ -98,7 +95,7 @@ export default class DrumPad extends React.Component {
                 {AudioObject.map((drumPad) => (
                     <div key={drumPad.btnID}>
                         <button className="drum-pad" id={drumPad.btnID} onClick={this.handleClick(drumPad.btnID)} onKeyDown={this.handleKeyPress}> {drumPad.trigger}
-                            <audio ref={this.audio} className="clip" id={drumPad.trigger} src={drumPad.source} />
+                            <audio ref={e => this.audio = e} className="clip" id={drumPad.trigger} src={drumPad.source} />
                         </button>
                     </div>
                 ))}
