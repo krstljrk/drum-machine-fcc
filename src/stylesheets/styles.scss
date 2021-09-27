@@ -30,12 +30,15 @@ body {
 
     .drum-pad-container {
         min-width: 65%;
-        display: inline-block;
+        display: flex;
+        flex-direction: row;
+        
 
         .drum-pad {
+            display: inline;
             box-shadow: 2px 1px 4px black;
             height: 100px;
-            width: 100px;
+            width: 100px; 
             @include equal-margin(10px)
         }
     }

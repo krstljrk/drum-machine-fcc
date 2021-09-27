@@ -94,7 +94,6 @@ export default function DrumPad() {
     } */
     const handleClick = () => {
         audioRef.current.play();
-        audioRef.currentTime = 0;
     }
 
     const handleKeyPress = (event) => {
