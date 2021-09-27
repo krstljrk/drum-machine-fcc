@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRef } from 'react'
 
 const AudioObject = [
     {
@@ -66,22 +67,37 @@ const AudioObject = [
     }
 ]
 
-export default class DrumPad extends React.Component {
-    constructor(props) {
-        super(props);
+export default function DrumPad() {
 
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+    const audioRef = useRef(null)
+
+    /*
+    componentDidMount() {
+        document.addEventListener("keydown", this.drumItemPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.drumItemPress);
     }
 
     // SOURCE OF PROBLEM:
-    handleClick = () => {
-        
-        /* const sound = document.getElementById(id)
-        sound.play(); */
+    handleClick = (id) => {
+        this.audioRef.current.play();
     }
 
     handleKeyPress = (event) => {
+        const key = event.key.toUpperCase();
+        if ("QWEASDZXC".includes(key)) {
+            /* this.audio.play; 
+            document.getElementById(key).play();
+        }
+    } */
+    const handleClick = () => {
+        audioRef.current.play();
+        audioRef.currentTime = 0;
+    }
+
+    const handleKeyPress = (event) => {
         const key = event.key.toUpperCase();
         if ("QWEASDZXC".includes(key)) {
             /* this.audio.play; */
@@ -89,20 +105,19 @@ export default class DrumPad extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <div>
-                {AudioObject.map((drumPad) => (
-                    <div key={drumPad.btnID}>
-                        <button className="drum-pad" id={drumPad.btnID} onClick={this.handleClick(drumPad.btnID)} onKeyDown={this.handleKeyPress}> {drumPad.trigger}
-                            <audio ref={e => this.audio = e} className="clip" id={drumPad.trigger} src={drumPad.source} />
-                        </button>
-                    </div>
-                ))}
-            </div>
+    return (
+        <div>
+            {AudioObject.map((drumPad) => (
+                <div key={drumPad.btnID}>
+                    <button className="drum-pad" id={drumPad.btnID} onClick={handleClick} onKeyDown={handleKeyPress}> {drumPad.trigger}
+                        <audio ref={audioRef} className="clip" id={drumPad.trigger} src={drumPad.source} />
+                    </button>
+                </div>
+            ))}
+        </div>
 
-        )
-    }
+    )
+
 
 
 }
