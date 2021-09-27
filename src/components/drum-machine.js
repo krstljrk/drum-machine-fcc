@@ -12,6 +12,7 @@ export default class DrumMachine extends React.Component {
         }
         
     }
+   
     componentDidMount() {
         document.addEventListener("keydown", this.drumItemPress);
     }
