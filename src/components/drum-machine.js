@@ -73,22 +73,15 @@ export default class DrumMachine extends React.Component {
         this.state = {
             active: ''
         }
-        
+
         this.handleClick = this.handleClick.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
-   
-    componentDidMount() {
-        document.addEventListener("keydown", this.drumItemPress);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.drumItemPress);
     }
 
     handleClick = (id) => {
         /* audioRef.current.play(); */
         this[id].play();
+        this[id].currentTime = 0;
     }
 
     handleKeyPress = (event) => {
@@ -99,16 +92,33 @@ export default class DrumMachine extends React.Component {
         }
     }
 
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyPress);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
+    }
+
     render() {
         const DrumPad = AudioObject.map((key) => (
             <div>
-                <button className="drum-pad" id={key.id} onClick={()=>{this.handleClick(key.id)}} onKeyDown={this.handleKeyPress}> {key.trigger}
+                <button
+                    className="drum-pad"
+                    id={key.id}
+                    onClick={() => {
+                        this.handleClick(key.id);
+                    }}
+                /* onKeyDown={() => {
+                    this.handleKeyPress(key.trigger, key.id)
+                }} */
+                > {key.trigger}
                     <audio ref={ref => this[key.id] = ref} className="clip" id={key.trigger} src={key.source} />
                 </button>
             </div>
         ))
         return (
-            <div  className="container-fluid" id="drum-machine">
+            <div className="container-fluid" id="drum-machine">
                 <div className="drum-pad-container">
                     {DrumPad}
                 </div>
