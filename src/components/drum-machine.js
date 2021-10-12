@@ -73,13 +73,14 @@ export default class DrumMachine extends React.Component {
         this.state = {
             active: ' '
         }
-
         this.handleClick = this.handleClick.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handleDisplay = this.handleDisplay.bind(this);
     }
 
     handleClick = (id) => {
+        const audioElem = AudioObject.filter(i => i.id == id);
+        this.handleDisplay(audioElem[0].textID);
         this[id].play();
         this[id].currentTime = 0;
     }
@@ -120,7 +121,6 @@ export default class DrumMachine extends React.Component {
                     id={key.id}
                     onClick={() => {
                         this.handleClick(key.id);
-                        this.handleDisplay(key.textID);
                     }}
                 > {key.trigger}
                     <audio ref={ref => this[key.id] = ref} className="clip" id={key.trigger} src={key.source} />
