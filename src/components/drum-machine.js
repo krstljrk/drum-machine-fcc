@@ -71,7 +71,7 @@ export default class DrumMachine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: ''
+            active: 'something, something'
         }
 
         this.handleClick = this.handleClick.bind(this);

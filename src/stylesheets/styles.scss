@@ -22,17 +22,21 @@ body {
 #drum-machine {
     display: flex;
     margin-top: 15%;
-    max-width: 40vw;
+    width: 35vw;
     max-height: auto;
     border: 1px solid $border-color;
     background: $container;
 
     .drum-pad-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 160px));
+        width: fit-content;
+        margin-right: 25px;
+        grid-template-columns: 100px 100px 100px;
         
 
         .drum-pad {
+            height: 90px;
+            width: 90px;
             box-shadow: 2px 1px 4px black;
             @include equal-margin(10px)
         }
@@ -40,7 +44,7 @@ body {
 
     .display-container {
         border: 1px solid $border-color;
-        min-width: 35%;
+        width: 60%;
         background: $background;
 
         h4 {
