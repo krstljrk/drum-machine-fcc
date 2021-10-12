@@ -87,8 +87,9 @@ export default class DrumMachine extends React.Component {
     handleKeyPress = (event) => {
         const key = event.key.toUpperCase();
         if ("QWEASDZXC".includes(key)) {
-            this.handleDisplay(key.textID);
             document.getElementById(key).play();
+            const audioElem = AudioObject.filter(i => i.trigger == key);
+            this.handleDisplay(audioElem[0].textID);
         }
     }
 
