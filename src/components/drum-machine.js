@@ -71,11 +71,12 @@ export default class DrumMachine extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: 'something, something'
+            active: ' '
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleDisplay = this.handleDisplay.bind(this);
     }
 
     handleClick = (id) => {
@@ -86,8 +87,20 @@ export default class DrumMachine extends React.Component {
     handleKeyPress = (event) => {
         const key = event.key.toUpperCase();
         if ("QWEASDZXC".includes(key)) {
+            this.handleDisplay(key.textID);
             document.getElementById(key).play();
         }
+    }
+
+    handleDisplay = (text) => {
+        this.setState({
+            active: text
+        })
+        setTimeout(() => {
+            this.setState({
+                active: ' '
+            })
+        }, 8000);
     }
 
     componentDidMount() {
@@ -106,6 +119,7 @@ export default class DrumMachine extends React.Component {
                     id={key.id}
                     onClick={() => {
                         this.handleClick(key.id);
+                        this.handleDisplay(key.textID);
                     }}
                 > {key.trigger}
                     <audio ref={ref => this[key.id] = ref} className="clip" id={key.trigger} src={key.source} />
