@@ -21,7 +21,6 @@ body {
 
 #drum-machine {
     display: flex;
-    flex-direction: row;
     margin-top: 15%;
     max-width: 40vw;
     max-height: auto;
@@ -29,16 +28,12 @@ body {
     background: $container;
 
     .drum-pad-container {
-        min-width: 65%;
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 160px));
         
 
         .drum-pad {
-            display: inline;
             box-shadow: 2px 1px 4px black;
-            height: 100px;
-            width: 100px; 
             @include equal-margin(10px)
         }
     }
