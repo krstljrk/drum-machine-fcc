@@ -79,7 +79,6 @@ export default class DrumMachine extends React.Component {
     }
 
     handleClick = (id) => {
-        /* audioRef.current.play(); */
         this[id].play();
         this[id].currentTime = 0;
     }
@@ -87,7 +86,6 @@ export default class DrumMachine extends React.Component {
     handleKeyPress = (event) => {
         const key = event.key.toUpperCase();
         if ("QWEASDZXC".includes(key)) {
-            /* this.audio.play; */
             document.getElementById(key).play();
         }
     }
@@ -109,9 +107,6 @@ export default class DrumMachine extends React.Component {
                     onClick={() => {
                         this.handleClick(key.id);
                     }}
-                /* onKeyDown={() => {
-                    this.handleKeyPress(key.trigger, key.id)
-                }} */
                 > {key.trigger}
                     <audio ref={ref => this[key.id] = ref} className="clip" id={key.trigger} src={key.source} />
                 </button>
